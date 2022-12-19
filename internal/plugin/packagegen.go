@@ -11,7 +11,7 @@ type packageGenerator struct {
 	files []protoreflect.FileDescriptor
 }
 
-func (p packageGenerator) Generate(f *codegen.File) error {
+func (p packageGenerator) Generate(f *codegen.File, params map[string]string) error {
 	p.generateHeader(f)
 	var seenService bool
 	var walkErr error
@@ -25,7 +25,7 @@ func (p packageGenerator) Generate(f *codegen.File) error {
 			if v.IsMapEntry() {
 				return false
 			}
-			messageGenerator{pkg: p.pkg, message: v}.Generate(f)
+			messageGenerator{pkg: p.pkg, message: v}.Generate(f, params)
 		case protoreflect.EnumDescriptor:
 			enumGenerator{pkg: p.pkg, enum: v}.Generate(f)
 		case protoreflect.ServiceDescriptor:

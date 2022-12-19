@@ -6,50 +6,50 @@
 // [site][einride.example.freight.v1.Site].
 export type Shipment = {
   // The resource name of the shipment.
-  name: string | undefined;
+  name?: string;
   // The creation timestamp of the shipment.
   //
   // Behaviors: OUTPUT_ONLY
-  createTime: wellKnownTimestamp | undefined;
+  create_time?: wellKnownTimestamp;
   // The last update timestamp of the shipment.
   // Updated when create/update/delete operation is shipment.
   //
   // Behaviors: OUTPUT_ONLY
-  updateTime: wellKnownTimestamp | undefined;
+  update_time?: wellKnownTimestamp;
   // The deletion timestamp of the shipment.
   //
   // Behaviors: OUTPUT_ONLY
-  deleteTime: wellKnownTimestamp | undefined;
+  delete_time?: wellKnownTimestamp;
   // The resource name of the origin site of the shipment.
   // Format: shippers/{shipper}/sites/{site}
   //
   // Behaviors: REQUIRED
-  originSite: string | undefined;
+  origin_site: string | undefined;
   // The resource name of the destination site of the shipment.
   // Format: shippers/{shipper}/sites/{site}
   //
   // Behaviors: REQUIRED
-  destinationSite: string | undefined;
+  destination_site: string | undefined;
   // The earliest pickup time of the shipment at the origin site.
   //
   // Behaviors: REQUIRED
-  pickupEarliestTime: wellKnownTimestamp | undefined;
+  pickup_earliest_time: wellKnownTimestamp | undefined;
   // The latest pickup time of the shipment at the origin site.
   //
   // Behaviors: REQUIRED
-  pickupLatestTime: wellKnownTimestamp | undefined;
+  pickup_latest_time: wellKnownTimestamp | undefined;
   // The earliest delivery time of the shipment at the destination site.
   //
   // Behaviors: REQUIRED
-  deliveryEarliestTime: wellKnownTimestamp | undefined;
+  delivery_earliest_time: wellKnownTimestamp | undefined;
   // The latest delivery time of the shipment at the destination site.
   //
   // Behaviors: REQUIRED
-  deliveryLatestTime: wellKnownTimestamp | undefined;
+  delivery_latest_time: wellKnownTimestamp | undefined;
   // The line items of the shipment.
-  lineItems: LineItem[] | undefined;
+  line_items?: LineItem[];
   // Annotations of the shipment.
-  annotations: { [key: string]: string } | undefined;
+  annotations?: { [key: string]: string };
 };
 
 // Encoded using RFC 3339, where generated output will always be Z-normalized
@@ -60,62 +60,62 @@ type wellKnownTimestamp = string;
 // A shipment line item.
 export type LineItem = {
   // The title of the line item.
-  title: string | undefined;
+  title?: string;
   // The quantity of the line item.
-  quantity: number | undefined;
+  quantity?: number;
   // The weight of the line item in kilograms.
-  weightKg: number | undefined;
+  weight_kg?: number;
   // The volume of the line item in cubic meters.
-  volumeM3: number | undefined;
+  volume_m3?: number;
 };
 
 // A shipper is a supplier or owner of goods to be transported.
 export type Shipper = {
   // The resource name of the shipper.
-  name: string | undefined;
+  name?: string;
   // The creation timestamp of the shipper.
   //
   // Behaviors: OUTPUT_ONLY
-  createTime: wellKnownTimestamp | undefined;
+  create_time?: wellKnownTimestamp;
   // The last update timestamp of the shipper.
   // Updated when create/update/delete operation is performed.
   //
   // Behaviors: OUTPUT_ONLY
-  updateTime: wellKnownTimestamp | undefined;
+  update_time?: wellKnownTimestamp;
   // The deletion timestamp of the shipper.
   //
   // Behaviors: OUTPUT_ONLY
-  deleteTime: wellKnownTimestamp | undefined;
+  delete_time?: wellKnownTimestamp;
   // The display name of the shipper.
   //
   // Behaviors: REQUIRED
-  displayName: string | undefined;
+  display_name: string | undefined;
 };
 
 // A site is a node in a [shipper][einride.example.freight.v1.Shipper]'s
 // transport network.
 export type Site = {
   // The resource name of the site.
-  name: string | undefined;
+  name?: string;
   // The creation timestamp of the site.
   //
   // Behaviors: OUTPUT_ONLY
-  createTime: wellKnownTimestamp | undefined;
+  create_time?: wellKnownTimestamp;
   // The last update timestamp of the site.
   // Updated when create/update/delete operation is performed.
   //
   // Behaviors: OUTPUT_ONLY
-  updateTime: wellKnownTimestamp | undefined;
+  update_time?: wellKnownTimestamp;
   // The deletion timestamp of the site.
   //
   // Behaviors: OUTPUT_ONLY
-  deleteTime: wellKnownTimestamp | undefined;
+  delete_time?: wellKnownTimestamp;
   // The display name of the site.
   //
   // Behaviors: REQUIRED
-  displayName: string | undefined;
+  display_name: string | undefined;
   // The geographic location of the site.
-  latLng: googletype_LatLng | undefined;
+  lat_lng?: googletype_LatLng;
 };
 
 // An object that represents a latitude/longitude pair. This is expressed as a
@@ -125,9 +125,9 @@ export type Site = {
 // standard</a>. Values must be within normalized ranges.
 export type googletype_LatLng = {
   // The latitude in degrees. It must be in the range [-90.0, +90.0].
-  latitude: number | undefined;
+  latitude?: number;
   // The longitude in degrees. It must be in the range [-180.0, +180.0].
-  longitude: number | undefined;
+  longitude?: number;
 };
 
 // Request message for FreightService.GetShipper.
@@ -143,23 +143,23 @@ export type GetShipperRequest = {
 export type ListShippersRequest = {
   // Requested page size. Server may return fewer shippers than requested.
   // If unspecified, server will pick an appropriate default.
-  pageSize: number | undefined;
+  page_size?: number;
   // A token identifying a page of results the server should return.
   // Typically, this is the value of
   // [ListShippersResponse.next_page_token][einride.example.freight.v1.ListShippersResponse.next_page_token]
   // returned from the previous call to `ListShippers` method.
-  pageToken: string | undefined;
+  page_token?: string;
 };
 
 // Response message for FreightService.ListShippers.
 export type ListShippersResponse = {
   // The list of shippers.
-  shippers: Shipper[] | undefined;
+  shippers?: Shipper[];
   // A token to retrieve next page of results.  Pass this value in the
   // [ListShippersRequest.page_token][einride.example.freight.v1.ListShippersRequest.page_token]
   // field in the subsequent call to `ListShippers` method to retrieve the next
   // page of results.
-  nextPageToken: string | undefined;
+  next_page_token?: string;
 };
 
 // Request message for FreightService.CreateShipper.
@@ -179,7 +179,7 @@ export type UpdateShipperRequest = {
   // Behaviors: REQUIRED
   shipper: Shipper | undefined;
   // The list of fields to be updated.
-  updateMask: wellKnownFieldMask | undefined;
+  update_mask?: wellKnownFieldMask;
 };
 
 // In JSON, a field mask is encoded as a single string where paths are
@@ -237,23 +237,23 @@ export type ListSitesRequest = {
   parent: string | undefined;
   // Requested page size. Server may return fewer sites than requested.
   // If unspecified, server will pick an appropriate default.
-  pageSize: number | undefined;
+  page_size?: number;
   // A token identifying a page of results the server should return.
   // Typically, this is the value of
   // [ListSitesResponse.next_page_token][einride.example.freight.v1.ListSitesResponse.next_page_token]
   // returned from the previous call to `ListSites` method.
-  pageToken: string | undefined;
+  page_token?: string;
 };
 
 // Response message for FreightService.ListSites.
 export type ListSitesResponse = {
   // The list of sites.
-  sites: Site[] | undefined;
+  sites?: Site[];
   // A token to retrieve next page of results.  Pass this value in the
   // [ListSitesRequest.page_token][einride.example.freight.v1.ListSitesRequest.page_token]
   // field in the subsequent call to `ListSites` method to retrieve the next
   // page of results.
-  nextPageToken: string | undefined;
+  next_page_token?: string;
 };
 
 // Request message for FreightService.CreateSite.
@@ -278,7 +278,7 @@ export type UpdateSiteRequest = {
   // Behaviors: REQUIRED
   site: Site | undefined;
   // The list of fields to be updated.
-  updateMask: wellKnownFieldMask | undefined;
+  update_mask?: wellKnownFieldMask;
 };
 
 // Request message for FreightService.DeleteSite.
@@ -308,23 +308,23 @@ export type ListShipmentsRequest = {
   parent: string | undefined;
   // Requested page size. Server may return fewer shipments than requested.
   // If unspecified, server will pick an appropriate default.
-  pageSize: number | undefined;
+  page_size?: number;
   // A token identifying a page of results the server should return.
   // Typically, this is the value of
   // [ListShipmentsResponse.next_page_token][einride.example.freight.v1.ListShipmentsResponse.next_page_token]
   // returned from the previous call to `ListShipments` method.
-  pageToken: string | undefined;
+  page_token?: string;
 };
 
 // Response message for FreightService.ListShipments.
 export type ListShipmentsResponse = {
   // The list of shipments.
-  shipments: Shipment[] | undefined;
+  shipments?: Shipment[];
   // A token to retrieve next page of results.  Pass this value in the
   // [ListShipmentsRequest.page_token][einride.example.freight.v1.ListShipmentsRequest.page_token]
   // field in the subsequent call to `ListShipments` method to retrieve the next
   // page of results.
-  nextPageToken: string | undefined;
+  next_page_token?: string;
 };
 
 // Request message for FreightService.CreateShipment.
@@ -349,7 +349,7 @@ export type UpdateShipmentRequest = {
   // Behaviors: REQUIRED
   shipment: Shipment | undefined;
   // The list of fields to be updated.
-  updateMask: wellKnownFieldMask | undefined;
+  update_mask?: wellKnownFieldMask;
 };
 
 // Request message for FreightService.DeleteShipment.
@@ -456,11 +456,11 @@ export function createFreightServiceClient(
       const path = `v1/shippers`; // eslint-disable-line quotes
       const body = null;
       const queryParams: string[] = [];
-      if (request.pageSize) {
-        queryParams.push(`pageSize=${encodeURIComponent(request.pageSize.toString())}`)
+      if (request.page_size) {
+        queryParams.push(`page_size=${encodeURIComponent(request.page_size.toString())}`)
       }
-      if (request.pageToken) {
-        queryParams.push(`pageToken=${encodeURIComponent(request.pageToken.toString())}`)
+      if (request.page_token) {
+        queryParams.push(`page_token=${encodeURIComponent(request.page_token.toString())}`)
       }
       let uri = path;
       if (queryParams.length > 0) {
@@ -499,8 +499,8 @@ export function createFreightServiceClient(
       const path = `v1/${request.shipper.name}`; // eslint-disable-line quotes
       const body = JSON.stringify(request?.shipper ?? {});
       const queryParams: string[] = [];
-      if (request.updateMask) {
-        queryParams.push(`updateMask=${encodeURIComponent(request.updateMask.toString())}`)
+      if (request.update_mask) {
+        queryParams.push(`update_mask=${encodeURIComponent(request.update_mask.toString())}`)
       }
       let uri = path;
       if (queryParams.length > 0) {
@@ -562,11 +562,11 @@ export function createFreightServiceClient(
       const path = `v1/${request.parent}/sites`; // eslint-disable-line quotes
       const body = null;
       const queryParams: string[] = [];
-      if (request.pageSize) {
-        queryParams.push(`pageSize=${encodeURIComponent(request.pageSize.toString())}`)
+      if (request.page_size) {
+        queryParams.push(`page_size=${encodeURIComponent(request.page_size.toString())}`)
       }
-      if (request.pageToken) {
-        queryParams.push(`pageToken=${encodeURIComponent(request.pageToken.toString())}`)
+      if (request.page_token) {
+        queryParams.push(`page_token=${encodeURIComponent(request.page_token.toString())}`)
       }
       let uri = path;
       if (queryParams.length > 0) {
@@ -608,8 +608,8 @@ export function createFreightServiceClient(
       const path = `v1/${request.site.name}`; // eslint-disable-line quotes
       const body = JSON.stringify(request?.site ?? {});
       const queryParams: string[] = [];
-      if (request.updateMask) {
-        queryParams.push(`updateMask=${encodeURIComponent(request.updateMask.toString())}`)
+      if (request.update_mask) {
+        queryParams.push(`update_mask=${encodeURIComponent(request.update_mask.toString())}`)
       }
       let uri = path;
       if (queryParams.length > 0) {
@@ -671,11 +671,11 @@ export function createFreightServiceClient(
       const path = `v1/${request.parent}/shipments`; // eslint-disable-line quotes
       const body = null;
       const queryParams: string[] = [];
-      if (request.pageSize) {
-        queryParams.push(`pageSize=${encodeURIComponent(request.pageSize.toString())}`)
+      if (request.page_size) {
+        queryParams.push(`page_size=${encodeURIComponent(request.page_size.toString())}`)
       }
-      if (request.pageToken) {
-        queryParams.push(`pageToken=${encodeURIComponent(request.pageToken.toString())}`)
+      if (request.page_token) {
+        queryParams.push(`page_token=${encodeURIComponent(request.page_token.toString())}`)
       }
       let uri = path;
       if (queryParams.length > 0) {
@@ -717,8 +717,8 @@ export function createFreightServiceClient(
       const path = `v1/${request.shipment.name}`; // eslint-disable-line quotes
       const body = JSON.stringify(request?.shipment ?? {});
       const queryParams: string[] = [];
-      if (request.updateMask) {
-        queryParams.push(`updateMask=${encodeURIComponent(request.updateMask.toString())}`)
+      if (request.update_mask) {
+        queryParams.push(`update_mask=${encodeURIComponent(request.update_mask.toString())}`)
       }
       let uri = path;
       if (queryParams.length > 0) {

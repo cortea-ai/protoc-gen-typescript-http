@@ -12,187 +12,187 @@ export type Enum =
 // Message
 export type Message = {
   // double
-  double: number | undefined;
+  double?: number;
   // float
-  float: number | undefined;
+  float?: number;
   // int32
-  int32: number | undefined;
+  int32?: number;
   // int64
-  int64: number | undefined;
+  int64?: number;
   // uint32
-  uint32: number | undefined;
+  uint32?: number;
   // uint64
-  uint64: number | undefined;
+  uint64?: number;
   // sint32
-  sint32: number | undefined;
+  sint32?: number;
   // sint64
-  sint64: number | undefined;
+  sint64?: number;
   // fixed32
-  fixed32: number | undefined;
+  fixed32?: number;
   // fixed64
-  fixed64: number | undefined;
+  fixed64?: number;
   // sfixed32
-  sfixed32: number | undefined;
+  sfixed32?: number;
   // sfixed64
-  sfixed64: number | undefined;
+  sfixed64?: number;
   // bool
-  bool: boolean | undefined;
+  bool?: boolean;
   // string
-  string: string | undefined;
+  string?: string;
   // bytes
-  bytes: string | undefined;
+  bytes?: string;
   // enum
-  enum: Enum | undefined;
+  enum?: Enum;
   // message
-  message: Message | undefined;
+  message?: Message;
   // optional double
-  optionalDouble?: number;
+  optional_double?: number;
   // optional float
-  optionalFloat?: number;
+  optional_float?: number;
   // optional int32
-  optionalInt32?: number;
+  optional_int32?: number;
   // optional int64
-  optionalInt64?: number;
+  optional_int64?: number;
   // optional uint32
-  optionalUint32?: number;
+  optional_uint32?: number;
   // optional uint64
-  optionalUint64?: number;
+  optional_uint64?: number;
   // optional sint32
-  optionalSint32?: number;
+  optional_sint32?: number;
   // optional sint64
-  optionalSint64?: number;
+  optional_sint64?: number;
   // optional fixed32
-  optionalFixed32?: number;
+  optional_fixed32?: number;
   // optional fixed64
-  optionalFixed64?: number;
+  optional_fixed64?: number;
   // optional sfixed32
-  optionalSfixed32?: number;
+  optional_sfixed32?: number;
   // optional sfixed64
-  optionalSfixed64?: number;
+  optional_sfixed64?: number;
   // optional bool
-  optionalBool?: boolean;
+  optional_bool?: boolean;
   // optional string
-  optionalString?: string;
+  optional_string?: string;
   // optional bytes
-  optionalBytes?: string;
+  optional_bytes?: string;
   // optional enum
-  optionalEnum?: Enum;
+  optional_enum?: Enum;
   // optional message
-  optionalMessage?: Message;
+  optional_message?: Message;
   // repeated_double
-  repeatedDouble: number[] | undefined;
+  repeated_double?: number[];
   // repeated_float
-  repeatedFloat: number[] | undefined;
+  repeated_float?: number[];
   // repeated_int32
-  repeatedInt32: number[] | undefined;
+  repeated_int32?: number[];
   // repeated_int64
-  repeatedInt64: number[] | undefined;
+  repeated_int64?: number[];
   // repeated_uint32
-  repeatedUint32: number[] | undefined;
+  repeated_uint32?: number[];
   // repeated_uint64
-  repeatedUint64: number[] | undefined;
+  repeated_uint64?: number[];
   // repeated_sint32
-  repeatedSint32: number[] | undefined;
+  repeated_sint32?: number[];
   // repeated_sint64
-  repeatedSint64: number[] | undefined;
+  repeated_sint64?: number[];
   // repeated_fixed32
-  repeatedFixed32: number[] | undefined;
+  repeated_fixed32?: number[];
   // repeated_fixed64
-  repeatedFixed64: number[] | undefined;
+  repeated_fixed64?: number[];
   // repeated_sfixed32
-  repeatedSfixed32: number[] | undefined;
+  repeated_sfixed32?: number[];
   // repeated_sfixed64
-  repeatedSfixed64: number[] | undefined;
+  repeated_sfixed64?: number[];
   // repeated_bool
-  repeatedBool: boolean[] | undefined;
+  repeated_bool?: boolean[];
   // repeated_string
-  repeatedString: string[] | undefined;
+  repeated_string?: string[];
   // repeated_bytes
-  repeatedBytes: string[] | undefined;
+  repeated_bytes?: string[];
   // repeated_enum
-  repeatedEnum: Enum[] | undefined;
+  repeated_enum?: Enum[];
   // repeated_message
-  repeatedMessage: Message[] | undefined;
+  repeated_message?: Message[];
   // map_string_string
-  mapStringString: { [key: string]: string } | undefined;
+  map_string_string?: { [key: string]: string };
   // map_string_message
-  mapStringMessage: { [key: string]: Message } | undefined;
+  map_string_message?: { [key: string]: Message };
   // oneof_string
-  oneofString?: string;
+  oneof_string?: string;
   // oneof_enum
-  oneofEnum?: Enum;
+  oneof_enum?: Enum;
   // oneof_message1
-  oneofMessage1?: Message;
+  oneof_message1?: Message;
   // oneof_message2
-  oneofMessage2?: Message;
+  oneof_message2?: Message;
   // any
-  any: wellKnownAny | undefined;
+  any?: wellKnownAny;
   // repeated_any
-  repeatedAny: wellKnownAny[] | undefined;
+  repeated_any?: wellKnownAny[];
   // duration
-  duration: wellKnownDuration | undefined;
+  duration?: wellKnownDuration;
   // repeated_duration
-  repeatedDuration: wellKnownDuration[] | undefined;
+  repeated_duration?: wellKnownDuration[];
   // empty
-  empty: wellKnownEmpty | undefined;
+  empty?: wellKnownEmpty;
   // repeated_empty
-  repeatedEmpty: wellKnownEmpty[] | undefined;
+  repeated_empty?: wellKnownEmpty[];
   // field_mask
-  fieldMask: wellKnownFieldMask | undefined;
+  field_mask?: wellKnownFieldMask;
   // repeated_field_mask
-  repeatedFieldMask: wellKnownFieldMask[] | undefined;
+  repeated_field_mask?: wellKnownFieldMask[];
   // struct
-  struct: wellKnownStruct | undefined;
+  struct?: wellKnownStruct;
   // repeated_struct
-  repeatedStruct: wellKnownStruct[] | undefined;
+  repeated_struct?: wellKnownStruct[];
   // value
-  value: wellKnownValue | undefined;
+  value?: wellKnownValue;
   // repeated_value
-  repeatedValue: wellKnownValue[] | undefined;
+  repeated_value?: wellKnownValue[];
   // null_value
-  nullValue: wellKnownNullValue | undefined;
+  null_value?: wellKnownNullValue;
   // repeated_null_value
-  repeatedNullValue: wellKnownNullValue[] | undefined;
+  repeated_null_value?: wellKnownNullValue[];
   // list_value
-  listValue: wellKnownListValue | undefined;
+  list_value?: wellKnownListValue;
   // repeated_list_value
-  repeatedListValue: wellKnownListValue[] | undefined;
+  repeated_list_value?: wellKnownListValue[];
   // bool_value
-  boolValue: wellKnownBoolValue | undefined;
+  bool_value?: wellKnownBoolValue;
   // repeated_bool_value
-  repeatedBoolValue: wellKnownBoolValue[] | undefined;
+  repeated_bool_value?: wellKnownBoolValue[];
   // bytes_value
-  bytesValue: wellKnownBytesValue | undefined;
+  bytes_value?: wellKnownBytesValue;
   // repeated_bytes_value
-  repeatedBytesValue: wellKnownBytesValue[] | undefined;
+  repeated_bytes_value?: wellKnownBytesValue[];
   // double_value
-  doubleValue: wellKnownDoubleValue | undefined;
+  double_value?: wellKnownDoubleValue;
   // repeated_double_value
-  repeatedDoubleValue: wellKnownDoubleValue[] | undefined;
+  repeated_double_value?: wellKnownDoubleValue[];
   // float_value
-  floatValue: wellKnownFloatValue | undefined;
+  float_value?: wellKnownFloatValue;
   // repeated_float_value
-  repeatedFloatValue: wellKnownFloatValue[] | undefined;
+  repeated_float_value?: wellKnownFloatValue[];
   // int32_value
-  int32Value: wellKnownInt32Value | undefined;
+  int32_value?: wellKnownInt32Value;
   // repeated_int32_value
-  repeatedInt32Value: wellKnownInt32Value[] | undefined;
+  repeated_int32_value?: wellKnownInt32Value[];
   // int64_value
-  int64Value: wellKnownInt64Value | undefined;
+  int64_value?: wellKnownInt64Value;
   // repeated_int64_value
-  repeatedInt64Value: wellKnownInt64Value[] | undefined;
+  repeated_int64_value?: wellKnownInt64Value[];
   // uint32_value
-  uint32Value: wellKnownUInt32Value | undefined;
+  uint32_value?: wellKnownUInt32Value;
   // repeated_uint32_value
-  repeatedUint32Value: wellKnownUInt32Value[] | undefined;
+  repeated_uint32_value?: wellKnownUInt32Value[];
   // uint64_value
-  uint64Value: wellKnownUInt64Value | undefined;
+  uint64_value?: wellKnownUInt64Value;
   // repeated_uint64_value
-  repeatedUint64Value: wellKnownUInt64Value[] | undefined;
+  repeated_uint64_value?: wellKnownUInt64Value[];
   // string_value
-  stringValue: wellKnownUInt64Value | undefined;
+  string_value?: wellKnownUInt64Value;
   // repeated_string_value
-  repeatedStringValue: wellKnownStringValue[] | undefined;
+  repeated_string_value?: wellKnownStringValue[];
 };
 
 // If the Any contains a value that has a special JSON mapping,
@@ -272,7 +272,7 @@ type wellKnownStringValue = string | null;
 // NestedMessage
 export type Message_NestedMessage = {
   // nested_message.string
-  string: string | undefined;
+  string?: string;
 };
 
 // NestedEnum
@@ -280,13 +280,13 @@ export type Message_NestedEnum =
   // NESTEDENUM_UNSPECIFIED
   "NESTEDENUM_UNSPECIFIED";
 export type Request = {
-  string: string | undefined;
-  repeatedString: string[] | undefined;
-  nested: Request_Nested | undefined;
+  string?: string;
+  repeated_string?: string[];
+  nested?: Request_Nested;
 };
 
 export type Request_Nested = {
-  string: string | undefined;
+  string?: string;
 };
 
 export interface SyntaxService {
@@ -317,9 +317,9 @@ export function createSyntaxServiceClient(
       if (request.string) {
         queryParams.push(`string=${encodeURIComponent(request.string.toString())}`)
       }
-      if (request.repeatedString) {
-        request.repeatedString.forEach((x) => {
-          queryParams.push(`repeatedString=${encodeURIComponent(x.toString())}`)
+      if (request.repeated_string) {
+        request.repeated_string.forEach((x) => {
+          queryParams.push(`repeated_string=${encodeURIComponent(x.toString())}`)
         })
       }
       if (request.nested?.string) {
@@ -379,9 +379,9 @@ export function createSyntaxServiceClient(
       if (request.string) {
         queryParams.push(`string=${encodeURIComponent(request.string.toString())}`)
       }
-      if (request.repeatedString) {
-        request.repeatedString.forEach((x) => {
-          queryParams.push(`repeatedString=${encodeURIComponent(x.toString())}`)
+      if (request.repeated_string) {
+        request.repeated_string.forEach((x) => {
+          queryParams.push(`repeated_string=${encodeURIComponent(x.toString())}`)
         })
       }
       let uri = path;
@@ -404,9 +404,9 @@ export function createSyntaxServiceClient(
       const path = `v1/${request.string}:path`; // eslint-disable-line quotes
       const body = null;
       const queryParams: string[] = [];
-      if (request.repeatedString) {
-        request.repeatedString.forEach((x) => {
-          queryParams.push(`repeatedString=${encodeURIComponent(x.toString())}`)
+      if (request.repeated_string) {
+        request.repeated_string.forEach((x) => {
+          queryParams.push(`repeated_string=${encodeURIComponent(x.toString())}`)
         })
       }
       if (request.nested?.string) {
@@ -432,9 +432,9 @@ export function createSyntaxServiceClient(
       const path = `v1/${request.string}:pathBody`; // eslint-disable-line quotes
       const body = JSON.stringify(request?.nested ?? {});
       const queryParams: string[] = [];
-      if (request.repeatedString) {
-        request.repeatedString.forEach((x) => {
-          queryParams.push(`repeatedString=${encodeURIComponent(x.toString())}`)
+      if (request.repeated_string) {
+        request.repeated_string.forEach((x) => {
+          queryParams.push(`repeated_string=${encodeURIComponent(x.toString())}`)
         })
       }
       let uri = path;

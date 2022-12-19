@@ -33,11 +33,13 @@ func Generate(request *pluginpb.CodeGeneratorRequest) (*pluginpb.CodeGeneratorRe
 		packaged[file.Package()] = append(packaged[file.Package()], file)
 	}
 
+	params := parseParameters(request.GetParameter())
+
 	var res pluginpb.CodeGeneratorResponse
 	for pkg, files := range packaged {
 		var index codegen.File
 		indexPathElems := append(strings.Split(string(pkg), "."), "index.ts")
-		if err := (packageGenerator{pkg: pkg, files: files}).Generate(&index); err != nil {
+		if err := (packageGenerator{pkg: pkg, files: files}).Generate(&index, params); err != nil {
 			return nil, fmt.Errorf("generate package '%s': %w", pkg, err)
 		}
 		index.P()
@@ -49,4 +51,20 @@ func Generate(request *pluginpb.CodeGeneratorRequest) (*pluginpb.CodeGeneratorRe
 	}
 	res.SupportedFeatures = proto.Uint64(uint64(pluginpb.CodeGeneratorResponse_FEATURE_PROTO3_OPTIONAL))
 	return &res, nil
+}
+
+func parseParameters(parameter string) map[string]string {
+	params := make(map[string]string)
+	for _, param := range strings.Split(parameter, ",") {
+		if param == "" {
+			continue
+		}
+		parts := strings.SplitN(param, "=", 2)
+		if len(parts) == 1 {
+			params[parts[0]] = ""
+		} else {
+			params[parts[0]] = parts[1]
+		}
+	}
+	return params
 }
