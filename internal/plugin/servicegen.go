@@ -50,7 +50,7 @@ func (s serviceGenerator) generateHandler(f *codegen.File) {
 	f.P(t(1), "body: string | null;")
 	f.P("};")
 	f.P()
-	f.P("export type RequestHandler<TOptions> = (request: RequestType, meta: { service: string, method: string, options?: TOptions }) => Promise<unknown>;")
+	f.P("export type RequestHandler<TOptions> = (request: RequestType, meta: { service: string, method: string }, options?: TOptions) => Promise<unknown>;")
 	f.P()
 }
 
@@ -92,7 +92,7 @@ func (s serviceGenerator) generateMethod(f *codegen.File, method protoreflect.Me
 	if err != nil {
 		return fmt.Errorf("parse http rule: %w", err)
 	}
-	f.P(t(2), method.Name(), "(request) { // eslint-disable-line @typescript-eslint/no-unused-vars")
+	f.P(t(2), method.Name(), "(request, options) { // eslint-disable-line @typescript-eslint/no-unused-vars")
 	s.generateMethodPathValidation(f, method.Input(), rule)
 	s.generateMethodPath(f, method.Input(), rule)
 	s.generateMethodBody(f, method.Input(), rule)
