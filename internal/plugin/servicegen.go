@@ -29,7 +29,7 @@ func (s serviceGenerator) Generate(f *codegen.File) error {
 
 func (s serviceGenerator) generateInterface(f *codegen.File) {
 	commentGenerator{descriptor: s.service}.generateLeading(f, 0)
-	f.P("export interface ", descriptorTypeName(s.service), " {")
+	f.P("export interface ", descriptorTypeName(s.service), "<TOptions>", " {")
 	rangeMethods(s.service.Methods(), func(method protoreflect.MethodDescriptor) {
 		if !supportedMethod(method) {
 			return
@@ -37,20 +37,20 @@ func (s serviceGenerator) generateInterface(f *codegen.File) {
 		commentGenerator{descriptor: method}.generateLeading(f, 1)
 		input := typeFromMessage(s.pkg, method.Input())
 		output := typeFromMessage(s.pkg, method.Output())
-		f.P(t(1), method.Name(), "(request: ", input.Reference(), "): Promise<", output.Reference(), ">;")
+		f.P(t(1), method.Name(), "(request: ", input.Reference(), ", options?: TOptions): Promise<", output.Reference(), ">;")
 	})
 	f.P("}")
 	f.P()
 }
 
 func (s serviceGenerator) generateHandler(f *codegen.File) {
-	f.P("type RequestType = {")
+	f.P("export type RequestType = {")
 	f.P(t(1), "path: string;")
 	f.P(t(1), "method: string;")
 	f.P(t(1), "body: string | null;")
 	f.P("};")
 	f.P()
-	f.P("type RequestHandler = (request: RequestType, meta: { service: string, method: string }) => Promise<unknown>;")
+	f.P("export type RequestHandler<TOptions> = (request: RequestType, meta: { service: string, method: string, options?: TOptions }) => Promise<unknown>;")
 	f.P()
 }
 
@@ -58,14 +58,14 @@ func (s serviceGenerator) generateClient(f *codegen.File) error {
 	f.P(
 		"export function create",
 		descriptorTypeName(s.service),
-		"Client(",
+		"Client<TOptions>(",
 		"\n",
 		t(1),
-		"handler: RequestHandler",
+		"handler: RequestHandler<TOptions>",
 		"\n",
 		"): ",
 		descriptorTypeName(s.service),
-		" {",
+		"<TOptions> {",
 	)
 	f.P(t(1), "return {")
 	var methodErr error
@@ -108,7 +108,7 @@ func (s serviceGenerator) generateMethod(f *codegen.File, method protoreflect.Me
 	f.P(t(3), "}, {")
 	f.P(t(4), "service: \"", method.Parent().Name(), "\",")
 	f.P(t(4), "method: \"", method.Name(), "\",")
-	f.P(t(3), "}) as Promise<", outputType.Reference(), ">;")
+	f.P(t(3), "}, options) as Promise<", outputType.Reference(), ">;")
 	f.P(t(2), "},")
 	return nil
 }
