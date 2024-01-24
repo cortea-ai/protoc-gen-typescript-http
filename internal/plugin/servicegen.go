@@ -29,7 +29,7 @@ func (s serviceGenerator) Generate(f *codegen.File) error {
 
 func (s serviceGenerator) generateInterface(f *codegen.File) {
 	commentGenerator{descriptor: s.service}.generateLeading(f, 0)
-	f.P("export interface ", descriptorTypeName(s.service), "<TRegExtra>", " {")
+	f.P("export interface ", descriptorTypeName(s.service), "<TReqExtra>", " {")
 	rangeMethods(s.service.Methods(), func(method protoreflect.MethodDescriptor) {
 		if !supportedMethod(method) {
 			return
@@ -37,7 +37,7 @@ func (s serviceGenerator) generateInterface(f *codegen.File) {
 		commentGenerator{descriptor: method}.generateLeading(f, 1)
 		input := typeFromMessage(s.pkg, method.Input())
 		output := typeFromMessage(s.pkg, method.Output())
-		f.P(t(1), method.Name(), "(request: ", input.Reference(), ", extra?: TRegExtra): Promise<", output.Reference(), ">;")
+		f.P(t(1), method.Name(), "(request: ", input.Reference(), ", extra?: TReqExtra): Promise<", output.Reference(), ">;")
 	})
 	f.P("}")
 	f.P()
@@ -50,7 +50,7 @@ func (s serviceGenerator) generateHandler(f *codegen.File) {
 	f.P(t(1), "body: string | null;")
 	f.P("};")
 	f.P()
-	f.P("export type RequestHandler<TRegExtra> = (request: RequestType, meta: { service: string, method: string }, extra?: TRegExtra) => Promise<unknown>;")
+	f.P("export type RequestHandler<TReqExtra> = (request: RequestType, meta: { service: string, method: string }, extra?: TReqExtra) => Promise<unknown>;")
 	f.P()
 }
 
@@ -58,17 +58,17 @@ func (s serviceGenerator) generateClient(f *codegen.File) error {
 	f.P(
 		"export function create",
 		descriptorTypeName(s.service),
-		"Client<TRegExtra>(",
+		"Client<TReqExtra>(",
 		"\n",
 		t(1),
-		"handler: RequestHandler<TRegExtra>,",
+		"handler: RequestHandler<TReqExtra>,",
 		"\n",
 		t(1),
 		"options: { baseUrl?: string } = {}",
 		"\n",
 		"): ",
 		descriptorTypeName(s.service),
-		"<TRegExtra> {",
+		"<TReqExtra> {",
 	)
 	f.P(t(1), "return {")
 	var methodErr error
