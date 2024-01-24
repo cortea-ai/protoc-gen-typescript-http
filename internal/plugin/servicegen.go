@@ -29,7 +29,7 @@ func (s serviceGenerator) Generate(f *codegen.File) error {
 
 func (s serviceGenerator) generateInterface(f *codegen.File) {
 	commentGenerator{descriptor: s.service}.generateLeading(f, 0)
-	f.P("export interface ", descriptorTypeName(s.service), "<TOptions>", " {")
+	f.P("export interface ", descriptorTypeName(s.service), "<TRegExtra>", " {")
 	rangeMethods(s.service.Methods(), func(method protoreflect.MethodDescriptor) {
 		if !supportedMethod(method) {
 			return
@@ -37,7 +37,7 @@ func (s serviceGenerator) generateInterface(f *codegen.File) {
 		commentGenerator{descriptor: method}.generateLeading(f, 1)
 		input := typeFromMessage(s.pkg, method.Input())
 		output := typeFromMessage(s.pkg, method.Output())
-		f.P(t(1), method.Name(), "(request: ", input.Reference(), ", options?: TOptions): Promise<", output.Reference(), ">;")
+		f.P(t(1), method.Name(), "(request: ", input.Reference(), ", extra?: TRegExtra): Promise<", output.Reference(), ">;")
 	})
 	f.P("}")
 	f.P()
@@ -50,7 +50,7 @@ func (s serviceGenerator) generateHandler(f *codegen.File) {
 	f.P(t(1), "body: string | null;")
 	f.P("};")
 	f.P()
-	f.P("export type RequestHandler<TOptions> = (request: RequestType, meta: { service: string, method: string }, options?: TOptions) => Promise<unknown>;")
+	f.P("export type RequestHandler<TRegExtra> = (request: RequestType, meta: { service: string, method: string }, extra?: TRegExtra) => Promise<unknown>;")
 	f.P()
 }
 
@@ -58,18 +58,25 @@ func (s serviceGenerator) generateClient(f *codegen.File) error {
 	f.P(
 		"export function create",
 		descriptorTypeName(s.service),
-		"Client<TOptions>(",
+		"Client<TRegExtra>(",
 		"\n",
 		t(1),
-		"handler: RequestHandler<TOptions>",
+		"handler: RequestHandler<TRegExtra>,",
+		"\n",
+		t(1),
+		"options: { baseUrl?: string } = {}",
 		"\n",
 		"): ",
 		descriptorTypeName(s.service),
-		"<TOptions> {",
+		"<TRegExtra> {",
 	)
 	f.P(t(1), "return {")
 	var methodErr error
 	rangeMethods(s.service.Methods(), func(method protoreflect.MethodDescriptor) {
+		if !supportedMethod(method) {
+			return
+		}
+
 		if err := s.generateMethod(f, method); err != nil {
 			methodErr = fmt.Errorf("generate method %s: %w", method.Name(), err)
 		}
@@ -92,12 +99,12 @@ func (s serviceGenerator) generateMethod(f *codegen.File, method protoreflect.Me
 	if err != nil {
 		return fmt.Errorf("parse http rule: %w", err)
 	}
-	f.P(t(2), method.Name(), "(request, options) { // eslint-disable-line @typescript-eslint/no-unused-vars")
+	f.P(t(2), method.Name(), "(request, extra) { // eslint-disable-line @typescript-eslint/no-unused-vars")
 	s.generateMethodPathValidation(f, method.Input(), rule)
 	s.generateMethodPath(f, method.Input(), rule)
 	s.generateMethodBody(f, method.Input(), rule)
 	s.generateMethodQuery(f, method.Input(), rule)
-	f.P(t(3), "let uri = path;")
+	f.P(t(3), "let uri = `${options.baseUrl || ''}${path}`;")
 	f.P(t(3), "if (queryParams.length > 0) {")
 	f.P(t(4), "uri += `?${queryParams.join(\"&\")}`")
 	f.P(t(3), "}")
@@ -108,7 +115,7 @@ func (s serviceGenerator) generateMethod(f *codegen.File, method protoreflect.Me
 	f.P(t(3), "}, {")
 	f.P(t(4), "service: \"", method.Parent().Name(), "\",")
 	f.P(t(4), "method: \"", method.Name(), "\",")
-	f.P(t(3), "}, options) as Promise<", outputType.Reference(), ">;")
+	f.P(t(3), "}, extra) as Promise<", outputType.Reference(), ">;")
 	f.P(t(2), "},")
 	return nil
 }
