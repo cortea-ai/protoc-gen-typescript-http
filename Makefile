@@ -10,7 +10,7 @@ sagefile := $(abspath $(cwd)/.sage/bin/sagefile)
 go := $(shell command -v go 2>/dev/null)
 export GOWORK ?= off
 ifndef go
-SAGE_GO_VERSION ?= 1.18.4
+SAGE_GO_VERSION ?= 1.20.2
 export GOROOT := $(abspath $(cwd)/.sage/tools/go/$(SAGE_GO_VERSION)/go)
 export PATH := $(PATH):$(GOROOT)/bin
 go := $(GOROOT)/bin/go
@@ -67,17 +67,34 @@ git-verify-no-diff: $(sagefile)
 go-lint: $(sagefile)
 	@$(sagefile) GoLint
 
+.PHONY: go-lint-fix
+go-lint-fix: $(sagefile)
+	@$(sagefile) GoLintFix
+
 .PHONY: go-mod-tidy
 go-mod-tidy: $(sagefile)
 	@$(sagefile) GoModTidy
 
-.PHONY: go-review
-go-review: $(sagefile)
-	@$(sagefile) GoReview
+.PHONY: go-releaser
+go-releaser: $(sagefile)
+ifndef snapshot
+	 $(error missing argument snapshot="...")
+endif
+	@$(sagefile) GoReleaser "$(snapshot)"
 
 .PHONY: go-test
 go-test: $(sagefile)
 	@$(sagefile) GoTest
+
+.PHONY: semantic-release
+semantic-release: $(sagefile)
+ifndef repo
+	 $(error missing argument repo="...")
+endif
+ifndef dry
+	 $(error missing argument dry="...")
+endif
+	@$(sagefile) SemanticRelease "$(repo)" "$(dry)"
 
 .PHONY: typescript-lint
 typescript-lint: $(sagefile)
