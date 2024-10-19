@@ -81,119 +81,119 @@ export type Message = {
   // optional message
   optional_message?: Message;
   // repeated_double
-  repeated_double?: number[];
+  repeated_double: number[];
   // repeated_float
-  repeated_float?: number[];
+  repeated_float: number[];
   // repeated_int32
-  repeated_int32?: number[];
+  repeated_int32: number[];
   // repeated_int64
-  repeated_int64?: number[];
+  repeated_int64: number[];
   // repeated_uint32
-  repeated_uint32?: number[];
+  repeated_uint32: number[];
   // repeated_uint64
-  repeated_uint64?: number[];
+  repeated_uint64: number[];
   // repeated_sint32
-  repeated_sint32?: number[];
+  repeated_sint32: number[];
   // repeated_sint64
-  repeated_sint64?: number[];
+  repeated_sint64: number[];
   // repeated_fixed32
-  repeated_fixed32?: number[];
+  repeated_fixed32: number[];
   // repeated_fixed64
-  repeated_fixed64?: number[];
+  repeated_fixed64: number[];
   // repeated_sfixed32
-  repeated_sfixed32?: number[];
+  repeated_sfixed32: number[];
   // repeated_sfixed64
-  repeated_sfixed64?: number[];
+  repeated_sfixed64: number[];
   // repeated_bool
-  repeated_bool?: boolean[];
+  repeated_bool: boolean[];
   // repeated_string
-  repeated_string?: string[];
+  repeated_string: string[];
   // repeated_bytes
-  repeated_bytes?: string[];
+  repeated_bytes: string[];
   // repeated_enum
-  repeated_enum?: Enum[];
+  repeated_enum: Enum[];
   // repeated_message
-  repeated_message?: Message[];
+  repeated_message: Message[];
   // map_string_string
-  map_string_string?: { [key: string]: string };
+  map_string_string: { [key: string]: string };
   // map_string_message
-  map_string_message?: { [key: string]: Message };
+  map_string_message: { [key: string]: Message };
   // oneof_string
-  oneof_string?: string;
+  oneof_string: string;
   // oneof_enum
-  oneof_enum?: Enum;
+  oneof_enum: Enum;
   // oneof_message1
-  oneof_message1?: Message;
+  oneof_message1: Message;
   // oneof_message2
-  oneof_message2?: Message;
+  oneof_message2: Message;
   // any
   any?: wellKnownAny;
   // repeated_any
-  repeated_any?: wellKnownAny[];
+  repeated_any: wellKnownAny[];
   // duration
   duration?: wellKnownDuration;
   // repeated_duration
-  repeated_duration?: wellKnownDuration[];
+  repeated_duration: wellKnownDuration[];
   // empty
   empty?: wellKnownEmpty;
   // repeated_empty
-  repeated_empty?: wellKnownEmpty[];
+  repeated_empty: wellKnownEmpty[];
   // field_mask
   field_mask?: wellKnownFieldMask;
   // repeated_field_mask
-  repeated_field_mask?: wellKnownFieldMask[];
+  repeated_field_mask: wellKnownFieldMask[];
   // struct
   struct?: wellKnownStruct;
   // repeated_struct
-  repeated_struct?: wellKnownStruct[];
+  repeated_struct: wellKnownStruct[];
   // value
   value?: wellKnownValue;
   // repeated_value
-  repeated_value?: wellKnownValue[];
+  repeated_value: wellKnownValue[];
   // null_value
   null_value?: wellKnownNullValue;
   // repeated_null_value
-  repeated_null_value?: wellKnownNullValue[];
+  repeated_null_value: wellKnownNullValue[];
   // list_value
   list_value?: wellKnownListValue;
   // repeated_list_value
-  repeated_list_value?: wellKnownListValue[];
+  repeated_list_value: wellKnownListValue[];
   // bool_value
   bool_value?: wellKnownBoolValue;
   // repeated_bool_value
-  repeated_bool_value?: wellKnownBoolValue[];
+  repeated_bool_value: wellKnownBoolValue[];
   // bytes_value
   bytes_value?: wellKnownBytesValue;
   // repeated_bytes_value
-  repeated_bytes_value?: wellKnownBytesValue[];
+  repeated_bytes_value: wellKnownBytesValue[];
   // double_value
   double_value?: wellKnownDoubleValue;
   // repeated_double_value
-  repeated_double_value?: wellKnownDoubleValue[];
+  repeated_double_value: wellKnownDoubleValue[];
   // float_value
   float_value?: wellKnownFloatValue;
   // repeated_float_value
-  repeated_float_value?: wellKnownFloatValue[];
+  repeated_float_value: wellKnownFloatValue[];
   // int32_value
   int32_value?: wellKnownInt32Value;
   // repeated_int32_value
-  repeated_int32_value?: wellKnownInt32Value[];
+  repeated_int32_value: wellKnownInt32Value[];
   // int64_value
   int64_value?: wellKnownInt64Value;
   // repeated_int64_value
-  repeated_int64_value?: wellKnownInt64Value[];
+  repeated_int64_value: wellKnownInt64Value[];
   // uint32_value
   uint32_value?: wellKnownUInt32Value;
   // repeated_uint32_value
-  repeated_uint32_value?: wellKnownUInt32Value[];
+  repeated_uint32_value: wellKnownUInt32Value[];
   // uint64_value
   uint64_value?: wellKnownUInt64Value;
   // repeated_uint64_value
-  repeated_uint64_value?: wellKnownUInt64Value[];
+  repeated_uint64_value: wellKnownUInt64Value[];
   // string_value
   string_value?: wellKnownUInt64Value;
   // repeated_string_value
-  repeated_string_value?: wellKnownStringValue[];
+  repeated_string_value: wellKnownStringValue[];
 };
 
 // If the Any contains a value that has a special JSON mapping,
@@ -282,7 +282,7 @@ export type Message_NestedEnum =
   "NESTEDENUM_UNSPECIFIED";
 export type Request = {
   string?: string;
-  repeated_string?: string[];
+  repeated_string: string[];
   nested?: Request_Nested;
 };
 
@@ -290,28 +290,29 @@ export type Request_Nested = {
   string?: string;
 };
 
-export interface SyntaxService {
-  QueryOnly(request: Request): Promise<Message>;
-  EmptyVerb(request: wellKnownEmpty): Promise<wellKnownEmpty>;
-  StarBody(request: Request): Promise<Message>;
-  Body(request: Request): Promise<Message>;
-  Path(request: Request): Promise<Message>;
-  PathBody(request: Request): Promise<Message>;
+export interface SyntaxService<TReqExtra> {
+  QueryOnly(request: Request, extra?: TReqExtra): Promise<Message>;
+  EmptyVerb(request: wellKnownEmpty, extra?: TReqExtra): Promise<wellKnownEmpty>;
+  StarBody(request: Request, extra?: TReqExtra): Promise<Message>;
+  Body(request: Request, extra?: TReqExtra): Promise<Message>;
+  Path(request: Request, extra?: TReqExtra): Promise<Message>;
+  PathBody(request: Request, extra?: TReqExtra): Promise<Message>;
 }
 
-type RequestType = {
+export type RequestType = {
   path: string;
   method: string;
   body: string | null;
 };
 
-type RequestHandler = (request: RequestType, meta: { service: string, method: string }) => Promise<unknown>;
+export type RequestHandler<TReqExtra> = (request: RequestType, meta: { service: string, method: string }, extra?: TReqExtra) => Promise<unknown>;
 
-export function createSyntaxServiceClient(
-  handler: RequestHandler
-): SyntaxService {
+export function createSyntaxServiceClient<TReqExtra>(
+  handler: RequestHandler<TReqExtra>,
+  options: { baseUrl?: string } = {}
+): SyntaxService<TReqExtra> {
   return {
-    QueryOnly(request) { // eslint-disable-line @typescript-eslint/no-unused-vars
+    QueryOnly(request, extra) { // eslint-disable-line @typescript-eslint/no-unused-vars
       const path = `v1`; // eslint-disable-line quotes
       const body = null;
       const queryParams: string[] = [];
@@ -326,7 +327,7 @@ export function createSyntaxServiceClient(
       if (request.nested?.string) {
         queryParams.push(`nested.string=${encodeURIComponent(request.nested.string.toString())}`)
       }
-      let uri = path;
+      let uri = `${options.baseUrl || ''}${path}`;
       if (queryParams.length > 0) {
         uri += `?${queryParams.join("&")}`
       }
@@ -337,13 +338,13 @@ export function createSyntaxServiceClient(
       }, {
         service: "SyntaxService",
         method: "QueryOnly",
-      }) as Promise<Message>;
+      }, extra) as Promise<Message>;
     },
-    EmptyVerb(request) { // eslint-disable-line @typescript-eslint/no-unused-vars
+    EmptyVerb(request, extra) { // eslint-disable-line @typescript-eslint/no-unused-vars
       const path = `v1:emptyVerb`; // eslint-disable-line quotes
       const body = null;
       const queryParams: string[] = [];
-      let uri = path;
+      let uri = `${options.baseUrl || ''}${path}`;
       if (queryParams.length > 0) {
         uri += `?${queryParams.join("&")}`
       }
@@ -354,13 +355,13 @@ export function createSyntaxServiceClient(
       }, {
         service: "SyntaxService",
         method: "EmptyVerb",
-      }) as Promise<wellKnownEmpty>;
+      }, extra) as Promise<wellKnownEmpty>;
     },
-    StarBody(request) { // eslint-disable-line @typescript-eslint/no-unused-vars
+    StarBody(request, extra) { // eslint-disable-line @typescript-eslint/no-unused-vars
       const path = `v1:starBody`; // eslint-disable-line quotes
       const body = JSON.stringify(request);
       const queryParams: string[] = [];
-      let uri = path;
+      let uri = `${options.baseUrl || ''}${path}`;
       if (queryParams.length > 0) {
         uri += `?${queryParams.join("&")}`
       }
@@ -371,9 +372,9 @@ export function createSyntaxServiceClient(
       }, {
         service: "SyntaxService",
         method: "StarBody",
-      }) as Promise<Message>;
+      }, extra) as Promise<Message>;
     },
-    Body(request) { // eslint-disable-line @typescript-eslint/no-unused-vars
+    Body(request, extra) { // eslint-disable-line @typescript-eslint/no-unused-vars
       const path = `v1:body`; // eslint-disable-line quotes
       const body = JSON.stringify(request?.nested ?? {});
       const queryParams: string[] = [];
@@ -385,7 +386,7 @@ export function createSyntaxServiceClient(
           queryParams.push(`repeated_string=${encodeURIComponent(x.toString())}`)
         })
       }
-      let uri = path;
+      let uri = `${options.baseUrl || ''}${path}`;
       if (queryParams.length > 0) {
         uri += `?${queryParams.join("&")}`
       }
@@ -396,9 +397,9 @@ export function createSyntaxServiceClient(
       }, {
         service: "SyntaxService",
         method: "Body",
-      }) as Promise<Message>;
+      }, extra) as Promise<Message>;
     },
-    Path(request) { // eslint-disable-line @typescript-eslint/no-unused-vars
+    Path(request, extra) { // eslint-disable-line @typescript-eslint/no-unused-vars
       if (!request.string) {
         throw new Error("missing required field request.string");
       }
@@ -413,7 +414,7 @@ export function createSyntaxServiceClient(
       if (request.nested?.string) {
         queryParams.push(`nested.string=${encodeURIComponent(request.nested.string.toString())}`)
       }
-      let uri = path;
+      let uri = `${options.baseUrl || ''}${path}`;
       if (queryParams.length > 0) {
         uri += `?${queryParams.join("&")}`
       }
@@ -424,9 +425,9 @@ export function createSyntaxServiceClient(
       }, {
         service: "SyntaxService",
         method: "Path",
-      }) as Promise<Message>;
+      }, extra) as Promise<Message>;
     },
-    PathBody(request) { // eslint-disable-line @typescript-eslint/no-unused-vars
+    PathBody(request, extra) { // eslint-disable-line @typescript-eslint/no-unused-vars
       if (!request.string) {
         throw new Error("missing required field request.string");
       }
@@ -438,7 +439,7 @@ export function createSyntaxServiceClient(
           queryParams.push(`repeated_string=${encodeURIComponent(x.toString())}`)
         })
       }
-      let uri = path;
+      let uri = `${options.baseUrl || ''}${path}`;
       if (queryParams.length > 0) {
         uri += `?${queryParams.join("&")}`
       }
@@ -449,7 +450,7 @@ export function createSyntaxServiceClient(
       }, {
         service: "SyntaxService",
         method: "PathBody",
-      }) as Promise<Message>;
+      }, extra) as Promise<Message>;
     },
   };
 }

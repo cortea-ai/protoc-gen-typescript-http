@@ -25,32 +25,32 @@ export type Shipment = {
   // Format: shippers/{shipper}/sites/{site}
   //
   // Behaviors: REQUIRED
-  origin_site: string | undefined;
+  origin_site?: string;
   // The resource name of the destination site of the shipment.
   // Format: shippers/{shipper}/sites/{site}
   //
   // Behaviors: REQUIRED
-  destination_site: string | undefined;
+  destination_site?: string;
   // The earliest pickup time of the shipment at the origin site.
   //
   // Behaviors: REQUIRED
-  pickup_earliest_time: wellKnownTimestamp | undefined;
+  pickup_earliest_time?: wellKnownTimestamp;
   // The latest pickup time of the shipment at the origin site.
   //
   // Behaviors: REQUIRED
-  pickup_latest_time: wellKnownTimestamp | undefined;
+  pickup_latest_time?: wellKnownTimestamp;
   // The earliest delivery time of the shipment at the destination site.
   //
   // Behaviors: REQUIRED
-  delivery_earliest_time: wellKnownTimestamp | undefined;
+  delivery_earliest_time?: wellKnownTimestamp;
   // The latest delivery time of the shipment at the destination site.
   //
   // Behaviors: REQUIRED
-  delivery_latest_time: wellKnownTimestamp | undefined;
+  delivery_latest_time?: wellKnownTimestamp;
   // The line items of the shipment.
-  line_items?: LineItem[];
+  line_items: LineItem[];
   // Annotations of the shipment.
-  annotations?: { [key: string]: string };
+  annotations: { [key: string]: string };
 };
 
 // Encoded using RFC 3339, where generated output will always be Z-normalized
@@ -90,7 +90,7 @@ export type Shipper = {
   // The display name of the shipper.
   //
   // Behaviors: REQUIRED
-  display_name: string | undefined;
+  display_name?: string;
 };
 
 // A site is a node in a [shipper][einride.example.freight.v1.Shipper]'s
@@ -114,7 +114,7 @@ export type Site = {
   // The display name of the site.
   //
   // Behaviors: REQUIRED
-  display_name: string | undefined;
+  display_name?: string;
   // The geographic location of the site.
   lat_lng?: googletype_LatLng;
 };
@@ -137,7 +137,7 @@ export type GetShipperRequest = {
   // Format: shippers/{shipper}
   //
   // Behaviors: REQUIRED
-  name: string | undefined;
+  name?: string;
 };
 
 // Request message for FreightService.ListShippers.
@@ -155,7 +155,7 @@ export type ListShippersRequest = {
 // Response message for FreightService.ListShippers.
 export type ListShippersResponse = {
   // The list of shippers.
-  shippers?: Shipper[];
+  shippers: Shipper[];
   // A token to retrieve next page of results.  Pass this value in the
   // [ListShippersRequest.page_token][einride.example.freight.v1.ListShippersRequest.page_token]
   // field in the subsequent call to `ListShippers` method to retrieve the next
@@ -168,7 +168,7 @@ export type CreateShipperRequest = {
   // The shipper to create.
   //
   // Behaviors: REQUIRED
-  shipper: Shipper | undefined;
+  shipper?: Shipper;
 };
 
 // Request message for FreightService.UpdateShipper.
@@ -178,7 +178,7 @@ export type UpdateShipperRequest = {
   // Format: shippers/{shipper}
   //
   // Behaviors: REQUIRED
-  shipper: Shipper | undefined;
+  shipper?: Shipper;
   // The list of fields to be updated.
   update_mask?: wellKnownFieldMask;
 };
@@ -217,7 +217,7 @@ export type DeleteShipperRequest = {
   // Format: shippers/{shipper}
   //
   // Behaviors: REQUIRED
-  name: string | undefined;
+  name?: string;
 };
 
 // Request message for FreightService.GetSite.
@@ -226,7 +226,7 @@ export type GetSiteRequest = {
   // Format: shippers/{shipper}/sites/{site}
   //
   // Behaviors: REQUIRED
-  name: string | undefined;
+  name?: string;
 };
 
 // Request message for FreightService.ListSites.
@@ -235,7 +235,7 @@ export type ListSitesRequest = {
   // Format: shippers/{shipper}
   //
   // Behaviors: REQUIRED
-  parent: string | undefined;
+  parent?: string;
   // Requested page size. Server may return fewer sites than requested.
   // If unspecified, server will pick an appropriate default.
   page_size?: number;
@@ -249,7 +249,7 @@ export type ListSitesRequest = {
 // Response message for FreightService.ListSites.
 export type ListSitesResponse = {
   // The list of sites.
-  sites?: Site[];
+  sites: Site[];
   // A token to retrieve next page of results.  Pass this value in the
   // [ListSitesRequest.page_token][einride.example.freight.v1.ListSitesRequest.page_token]
   // field in the subsequent call to `ListSites` method to retrieve the next
@@ -263,11 +263,11 @@ export type CreateSiteRequest = {
   // Format: shippers/{shipper}
   //
   // Behaviors: REQUIRED
-  parent: string | undefined;
+  parent?: string;
   // The site to create.
   //
   // Behaviors: REQUIRED
-  site: Site | undefined;
+  site?: Site;
 };
 
 // Request message for FreightService.UpdateSite.
@@ -277,7 +277,7 @@ export type UpdateSiteRequest = {
   // Format: shippers/{shipper}/sites/{site}
   //
   // Behaviors: REQUIRED
-  site: Site | undefined;
+  site?: Site;
   // The list of fields to be updated.
   update_mask?: wellKnownFieldMask;
 };
@@ -288,7 +288,7 @@ export type DeleteSiteRequest = {
   // Format: shippers/{shipper}/sites/{site}
   //
   // Behaviors: REQUIRED
-  name: string | undefined;
+  name?: string;
 };
 
 // Request message for FreightService.GetShipment.
@@ -297,7 +297,7 @@ export type GetShipmentRequest = {
   // Format: shippers/{shipper}/shipments/{shipment}
   //
   // Behaviors: REQUIRED
-  name: string | undefined;
+  name?: string;
 };
 
 // Request message for FreightService.ListShipments.
@@ -306,7 +306,7 @@ export type ListShipmentsRequest = {
   // Format: shippers/{shipper}
   //
   // Behaviors: REQUIRED
-  parent: string | undefined;
+  parent?: string;
   // Requested page size. Server may return fewer shipments than requested.
   // If unspecified, server will pick an appropriate default.
   page_size?: number;
@@ -320,7 +320,7 @@ export type ListShipmentsRequest = {
 // Response message for FreightService.ListShipments.
 export type ListShipmentsResponse = {
   // The list of shipments.
-  shipments?: Shipment[];
+  shipments: Shipment[];
   // A token to retrieve next page of results.  Pass this value in the
   // [ListShipmentsRequest.page_token][einride.example.freight.v1.ListShipmentsRequest.page_token]
   // field in the subsequent call to `ListShipments` method to retrieve the next
@@ -334,11 +334,11 @@ export type CreateShipmentRequest = {
   // Format: shippers/{shipper}
   //
   // Behaviors: REQUIRED
-  parent: string | undefined;
+  parent?: string;
   // The shipment to create.
   //
   // Behaviors: REQUIRED
-  shipment: Shipment | undefined;
+  shipment?: Shipment;
 };
 
 // Request message for FreightService.UpdateShipment.
@@ -348,7 +348,7 @@ export type UpdateShipmentRequest = {
   // Format: shippers/{shipper}/shipments/{shipment}
   //
   // Behaviors: REQUIRED
-  shipment: Shipment | undefined;
+  shipment?: Shipment;
   // The list of fields to be updated.
   update_mask?: wellKnownFieldMask;
 };
@@ -359,7 +359,7 @@ export type DeleteShipmentRequest = {
   // Format: shippers/{shipper}/shipments/{shipment}
   //
   // Behaviors: REQUIRED
-  name: string | undefined;
+  name?: string;
 };
 
 // This API represents a simple freight service.
@@ -370,77 +370,78 @@ export type DeleteShipmentRequest = {
 // resources, named `shippers/*/sites/*`
 // - Each Shipper has a collection of [Shipment][einride.example.freight.v1.Shipment]
 // resources, named `shippers/*/shipments/*`
-export interface FreightService {
+export interface FreightService<TReqExtra> {
   // Get a shipper.
   // See: https://google.aip.dev/131 (Standard methods: Get).
-  GetShipper(request: GetShipperRequest): Promise<Shipper>;
+  GetShipper(request: GetShipperRequest, extra?: TReqExtra): Promise<Shipper>;
   // List shippers.
   // See: https://google.aip.dev/132 (Standard methods: List).
-  ListShippers(request: ListShippersRequest): Promise<ListShippersResponse>;
+  ListShippers(request: ListShippersRequest, extra?: TReqExtra): Promise<ListShippersResponse>;
   // Create a shipper.
   // See: https://google.aip.dev/133 (Standard methods: Create).
-  CreateShipper(request: CreateShipperRequest): Promise<Shipper>;
+  CreateShipper(request: CreateShipperRequest, extra?: TReqExtra): Promise<Shipper>;
   // Update a shipper.
   // See: https://google.aip.dev/134 (Standard methods: Update).
-  UpdateShipper(request: UpdateShipperRequest): Promise<Shipper>;
+  UpdateShipper(request: UpdateShipperRequest, extra?: TReqExtra): Promise<Shipper>;
   // Delete a shipper.
   // See: https://google.aip.dev/135 (Standard methods: Delete).
   // See: https://google.aip.dev/164 (Soft delete).
-  DeleteShipper(request: DeleteShipperRequest): Promise<Shipper>;
+  DeleteShipper(request: DeleteShipperRequest, extra?: TReqExtra): Promise<Shipper>;
   // Get a site.
   // See: https://google.aip.dev/131 (Standard methods: Get).
-  GetSite(request: GetSiteRequest): Promise<Site>;
+  GetSite(request: GetSiteRequest, extra?: TReqExtra): Promise<Site>;
   // List sites for a shipper.
   // See: https://google.aip.dev/132 (Standard methods: List).
-  ListSites(request: ListSitesRequest): Promise<ListSitesResponse>;
+  ListSites(request: ListSitesRequest, extra?: TReqExtra): Promise<ListSitesResponse>;
   // Create a site.
   // See: https://google.aip.dev/133 (Standard methods: Create).
-  CreateSite(request: CreateSiteRequest): Promise<Site>;
+  CreateSite(request: CreateSiteRequest, extra?: TReqExtra): Promise<Site>;
   // Update a site.
   // See: https://google.aip.dev/134 (Standard methods: Update).
-  UpdateSite(request: UpdateSiteRequest): Promise<Site>;
+  UpdateSite(request: UpdateSiteRequest, extra?: TReqExtra): Promise<Site>;
   // Delete a site.
   // See: https://google.aip.dev/135 (Standard methods: Delete).
   // See: https://google.aip.dev/164 (Soft delete).
-  DeleteSite(request: DeleteSiteRequest): Promise<Site>;
+  DeleteSite(request: DeleteSiteRequest, extra?: TReqExtra): Promise<Site>;
   // Get a shipment.
   // See: https://google.aip.dev/131 (Standard methods: Get).
-  GetShipment(request: GetShipmentRequest): Promise<Shipment>;
+  GetShipment(request: GetShipmentRequest, extra?: TReqExtra): Promise<Shipment>;
   // List shipments for a shipper.
   // See: https://google.aip.dev/132 (Standard methods: List).
-  ListShipments(request: ListShipmentsRequest): Promise<ListShipmentsResponse>;
+  ListShipments(request: ListShipmentsRequest, extra?: TReqExtra): Promise<ListShipmentsResponse>;
   // Create a shipment.
   // See: https://google.aip.dev/133 (Standard methods: Create).
-  CreateShipment(request: CreateShipmentRequest): Promise<Shipment>;
+  CreateShipment(request: CreateShipmentRequest, extra?: TReqExtra): Promise<Shipment>;
   // Update a shipment.
   // See: https://google.aip.dev/134 (Standard methods: Update).
-  UpdateShipment(request: UpdateShipmentRequest): Promise<Shipment>;
+  UpdateShipment(request: UpdateShipmentRequest, extra?: TReqExtra): Promise<Shipment>;
   // Delete a shipment.
   // See: https://google.aip.dev/135 (Standard methods: Delete).
   // See: https://google.aip.dev/164 (Soft delete).
-  DeleteShipment(request: DeleteShipmentRequest): Promise<Shipment>;
+  DeleteShipment(request: DeleteShipmentRequest, extra?: TReqExtra): Promise<Shipment>;
 }
 
-type RequestType = {
+export type RequestType = {
   path: string;
   method: string;
   body: string | null;
 };
 
-type RequestHandler = (request: RequestType, meta: { service: string, method: string }) => Promise<unknown>;
+export type RequestHandler<TReqExtra> = (request: RequestType, meta: { service: string, method: string }, extra?: TReqExtra) => Promise<unknown>;
 
-export function createFreightServiceClient(
-  handler: RequestHandler
-): FreightService {
+export function createFreightServiceClient<TReqExtra>(
+  handler: RequestHandler<TReqExtra>,
+  options: { baseUrl?: string } = {}
+): FreightService<TReqExtra> {
   return {
-    GetShipper(request) { // eslint-disable-line @typescript-eslint/no-unused-vars
+    GetShipper(request, extra) { // eslint-disable-line @typescript-eslint/no-unused-vars
       if (!request.name) {
         throw new Error("missing required field request.name");
       }
       const path = `v1/${request.name}`; // eslint-disable-line quotes
       const body = null;
       const queryParams: string[] = [];
-      let uri = path;
+      let uri = `${options.baseUrl || ''}${path}`;
       if (queryParams.length > 0) {
         uri += `?${queryParams.join("&")}`
       }
@@ -451,9 +452,9 @@ export function createFreightServiceClient(
       }, {
         service: "FreightService",
         method: "GetShipper",
-      }) as Promise<Shipper>;
+      }, extra) as Promise<Shipper>;
     },
-    ListShippers(request) { // eslint-disable-line @typescript-eslint/no-unused-vars
+    ListShippers(request, extra) { // eslint-disable-line @typescript-eslint/no-unused-vars
       const path = `v1/shippers`; // eslint-disable-line quotes
       const body = null;
       const queryParams: string[] = [];
@@ -463,7 +464,7 @@ export function createFreightServiceClient(
       if (request.page_token) {
         queryParams.push(`page_token=${encodeURIComponent(request.page_token.toString())}`)
       }
-      let uri = path;
+      let uri = `${options.baseUrl || ''}${path}`;
       if (queryParams.length > 0) {
         uri += `?${queryParams.join("&")}`
       }
@@ -474,13 +475,13 @@ export function createFreightServiceClient(
       }, {
         service: "FreightService",
         method: "ListShippers",
-      }) as Promise<ListShippersResponse>;
+      }, extra) as Promise<ListShippersResponse>;
     },
-    CreateShipper(request) { // eslint-disable-line @typescript-eslint/no-unused-vars
+    CreateShipper(request, extra) { // eslint-disable-line @typescript-eslint/no-unused-vars
       const path = `v1/shippers`; // eslint-disable-line quotes
       const body = JSON.stringify(request?.shipper ?? {});
       const queryParams: string[] = [];
-      let uri = path;
+      let uri = `${options.baseUrl || ''}${path}`;
       if (queryParams.length > 0) {
         uri += `?${queryParams.join("&")}`
       }
@@ -491,9 +492,9 @@ export function createFreightServiceClient(
       }, {
         service: "FreightService",
         method: "CreateShipper",
-      }) as Promise<Shipper>;
+      }, extra) as Promise<Shipper>;
     },
-    UpdateShipper(request) { // eslint-disable-line @typescript-eslint/no-unused-vars
+    UpdateShipper(request, extra) { // eslint-disable-line @typescript-eslint/no-unused-vars
       if (!request.shipper?.name) {
         throw new Error("missing required field request.shipper.name");
       }
@@ -503,7 +504,7 @@ export function createFreightServiceClient(
       if (request.update_mask) {
         queryParams.push(`update_mask=${encodeURIComponent(request.update_mask.toString())}`)
       }
-      let uri = path;
+      let uri = `${options.baseUrl || ''}${path}`;
       if (queryParams.length > 0) {
         uri += `?${queryParams.join("&")}`
       }
@@ -514,16 +515,16 @@ export function createFreightServiceClient(
       }, {
         service: "FreightService",
         method: "UpdateShipper",
-      }) as Promise<Shipper>;
+      }, extra) as Promise<Shipper>;
     },
-    DeleteShipper(request) { // eslint-disable-line @typescript-eslint/no-unused-vars
+    DeleteShipper(request, extra) { // eslint-disable-line @typescript-eslint/no-unused-vars
       if (!request.name) {
         throw new Error("missing required field request.name");
       }
       const path = `v1/${request.name}`; // eslint-disable-line quotes
       const body = null;
       const queryParams: string[] = [];
-      let uri = path;
+      let uri = `${options.baseUrl || ''}${path}`;
       if (queryParams.length > 0) {
         uri += `?${queryParams.join("&")}`
       }
@@ -534,16 +535,16 @@ export function createFreightServiceClient(
       }, {
         service: "FreightService",
         method: "DeleteShipper",
-      }) as Promise<Shipper>;
+      }, extra) as Promise<Shipper>;
     },
-    GetSite(request) { // eslint-disable-line @typescript-eslint/no-unused-vars
+    GetSite(request, extra) { // eslint-disable-line @typescript-eslint/no-unused-vars
       if (!request.name) {
         throw new Error("missing required field request.name");
       }
       const path = `v1/${request.name}`; // eslint-disable-line quotes
       const body = null;
       const queryParams: string[] = [];
-      let uri = path;
+      let uri = `${options.baseUrl || ''}${path}`;
       if (queryParams.length > 0) {
         uri += `?${queryParams.join("&")}`
       }
@@ -554,9 +555,9 @@ export function createFreightServiceClient(
       }, {
         service: "FreightService",
         method: "GetSite",
-      }) as Promise<Site>;
+      }, extra) as Promise<Site>;
     },
-    ListSites(request) { // eslint-disable-line @typescript-eslint/no-unused-vars
+    ListSites(request, extra) { // eslint-disable-line @typescript-eslint/no-unused-vars
       if (!request.parent) {
         throw new Error("missing required field request.parent");
       }
@@ -569,7 +570,7 @@ export function createFreightServiceClient(
       if (request.page_token) {
         queryParams.push(`page_token=${encodeURIComponent(request.page_token.toString())}`)
       }
-      let uri = path;
+      let uri = `${options.baseUrl || ''}${path}`;
       if (queryParams.length > 0) {
         uri += `?${queryParams.join("&")}`
       }
@@ -580,16 +581,16 @@ export function createFreightServiceClient(
       }, {
         service: "FreightService",
         method: "ListSites",
-      }) as Promise<ListSitesResponse>;
+      }, extra) as Promise<ListSitesResponse>;
     },
-    CreateSite(request) { // eslint-disable-line @typescript-eslint/no-unused-vars
+    CreateSite(request, extra) { // eslint-disable-line @typescript-eslint/no-unused-vars
       if (!request.parent) {
         throw new Error("missing required field request.parent");
       }
       const path = `v1/${request.parent}/sites`; // eslint-disable-line quotes
       const body = JSON.stringify(request?.site ?? {});
       const queryParams: string[] = [];
-      let uri = path;
+      let uri = `${options.baseUrl || ''}${path}`;
       if (queryParams.length > 0) {
         uri += `?${queryParams.join("&")}`
       }
@@ -600,9 +601,9 @@ export function createFreightServiceClient(
       }, {
         service: "FreightService",
         method: "CreateSite",
-      }) as Promise<Site>;
+      }, extra) as Promise<Site>;
     },
-    UpdateSite(request) { // eslint-disable-line @typescript-eslint/no-unused-vars
+    UpdateSite(request, extra) { // eslint-disable-line @typescript-eslint/no-unused-vars
       if (!request.site?.name) {
         throw new Error("missing required field request.site.name");
       }
@@ -612,7 +613,7 @@ export function createFreightServiceClient(
       if (request.update_mask) {
         queryParams.push(`update_mask=${encodeURIComponent(request.update_mask.toString())}`)
       }
-      let uri = path;
+      let uri = `${options.baseUrl || ''}${path}`;
       if (queryParams.length > 0) {
         uri += `?${queryParams.join("&")}`
       }
@@ -623,16 +624,16 @@ export function createFreightServiceClient(
       }, {
         service: "FreightService",
         method: "UpdateSite",
-      }) as Promise<Site>;
+      }, extra) as Promise<Site>;
     },
-    DeleteSite(request) { // eslint-disable-line @typescript-eslint/no-unused-vars
+    DeleteSite(request, extra) { // eslint-disable-line @typescript-eslint/no-unused-vars
       if (!request.name) {
         throw new Error("missing required field request.name");
       }
       const path = `v1/${request.name}`; // eslint-disable-line quotes
       const body = null;
       const queryParams: string[] = [];
-      let uri = path;
+      let uri = `${options.baseUrl || ''}${path}`;
       if (queryParams.length > 0) {
         uri += `?${queryParams.join("&")}`
       }
@@ -643,16 +644,16 @@ export function createFreightServiceClient(
       }, {
         service: "FreightService",
         method: "DeleteSite",
-      }) as Promise<Site>;
+      }, extra) as Promise<Site>;
     },
-    GetShipment(request) { // eslint-disable-line @typescript-eslint/no-unused-vars
+    GetShipment(request, extra) { // eslint-disable-line @typescript-eslint/no-unused-vars
       if (!request.name) {
         throw new Error("missing required field request.name");
       }
       const path = `v1/${request.name}`; // eslint-disable-line quotes
       const body = null;
       const queryParams: string[] = [];
-      let uri = path;
+      let uri = `${options.baseUrl || ''}${path}`;
       if (queryParams.length > 0) {
         uri += `?${queryParams.join("&")}`
       }
@@ -663,9 +664,9 @@ export function createFreightServiceClient(
       }, {
         service: "FreightService",
         method: "GetShipment",
-      }) as Promise<Shipment>;
+      }, extra) as Promise<Shipment>;
     },
-    ListShipments(request) { // eslint-disable-line @typescript-eslint/no-unused-vars
+    ListShipments(request, extra) { // eslint-disable-line @typescript-eslint/no-unused-vars
       if (!request.parent) {
         throw new Error("missing required field request.parent");
       }
@@ -678,7 +679,7 @@ export function createFreightServiceClient(
       if (request.page_token) {
         queryParams.push(`page_token=${encodeURIComponent(request.page_token.toString())}`)
       }
-      let uri = path;
+      let uri = `${options.baseUrl || ''}${path}`;
       if (queryParams.length > 0) {
         uri += `?${queryParams.join("&")}`
       }
@@ -689,16 +690,16 @@ export function createFreightServiceClient(
       }, {
         service: "FreightService",
         method: "ListShipments",
-      }) as Promise<ListShipmentsResponse>;
+      }, extra) as Promise<ListShipmentsResponse>;
     },
-    CreateShipment(request) { // eslint-disable-line @typescript-eslint/no-unused-vars
+    CreateShipment(request, extra) { // eslint-disable-line @typescript-eslint/no-unused-vars
       if (!request.parent) {
         throw new Error("missing required field request.parent");
       }
       const path = `v1/${request.parent}/shipments`; // eslint-disable-line quotes
       const body = JSON.stringify(request?.shipment ?? {});
       const queryParams: string[] = [];
-      let uri = path;
+      let uri = `${options.baseUrl || ''}${path}`;
       if (queryParams.length > 0) {
         uri += `?${queryParams.join("&")}`
       }
@@ -709,9 +710,9 @@ export function createFreightServiceClient(
       }, {
         service: "FreightService",
         method: "CreateShipment",
-      }) as Promise<Shipment>;
+      }, extra) as Promise<Shipment>;
     },
-    UpdateShipment(request) { // eslint-disable-line @typescript-eslint/no-unused-vars
+    UpdateShipment(request, extra) { // eslint-disable-line @typescript-eslint/no-unused-vars
       if (!request.shipment?.name) {
         throw new Error("missing required field request.shipment.name");
       }
@@ -721,7 +722,7 @@ export function createFreightServiceClient(
       if (request.update_mask) {
         queryParams.push(`update_mask=${encodeURIComponent(request.update_mask.toString())}`)
       }
-      let uri = path;
+      let uri = `${options.baseUrl || ''}${path}`;
       if (queryParams.length > 0) {
         uri += `?${queryParams.join("&")}`
       }
@@ -732,16 +733,16 @@ export function createFreightServiceClient(
       }, {
         service: "FreightService",
         method: "UpdateShipment",
-      }) as Promise<Shipment>;
+      }, extra) as Promise<Shipment>;
     },
-    DeleteShipment(request) { // eslint-disable-line @typescript-eslint/no-unused-vars
+    DeleteShipment(request, extra) { // eslint-disable-line @typescript-eslint/no-unused-vars
       if (!request.name) {
         throw new Error("missing required field request.name");
       }
       const path = `v1/${request.name}`; // eslint-disable-line quotes
       const body = null;
       const queryParams: string[] = [];
-      let uri = path;
+      let uri = `${options.baseUrl || ''}${path}`;
       if (queryParams.length > 0) {
         uri += `?${queryParams.join("&")}`
       }
@@ -752,7 +753,7 @@ export function createFreightServiceClient(
       }, {
         service: "FreightService",
         method: "DeleteShipment",
-      }) as Promise<Shipment>;
+      }, extra) as Promise<Shipment>;
     },
   };
 }

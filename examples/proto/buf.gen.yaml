@@ -3,5 +3,3 @@ version: v1
 plugins:
   - name: typescript-http
     out: gen/typescript
-    opt:
-      - use_required_behavior=true

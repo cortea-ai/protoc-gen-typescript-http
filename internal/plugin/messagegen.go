@@ -2,7 +2,6 @@ package plugin
 
 import (
 	"go.einride.tech/protoc-gen-typescript-http/internal/codegen"
-	"google.golang.org/genproto/googleapis/api/annotations"
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
@@ -17,20 +16,11 @@ func (m messageGenerator) Generate(f *codegen.File, params map[string]string) {
 	rangeFields(m.message, func(field protoreflect.FieldDescriptor) {
 		commentGenerator{descriptor: field}.generateLeading(f, 1)
 		fieldType := typeFromField(m.pkg, field)
-		useRequiredBehavior := params["use_required_behavior"] == "true"
-		isRequired := false
-		if useRequiredBehavior {
-			for _, behavior := range getFieldBehaviors(field) {
-				if behavior == annotations.FieldBehavior_REQUIRED {
-					isRequired = true
-					break
-				}
-			}
-		}
-		if isRequired || !useRequiredBehavior && field.ContainingOneof() == nil && !field.HasOptionalKeyword() {
-			f.P(t(1), field.Name(), ": ", fieldType.Reference(), " | undefined;")
-		} else {
+		isRepeated := field.IsList() || field.IsMap()
+		if !isRepeated && (field.ContainingOneof() == nil || field.HasOptionalKeyword()) {
 			f.P(t(1), field.Name(), "?: ", fieldType.Reference(), ";")
+		} else {
+			f.P(t(1), field.Name(), ": ", fieldType.Reference(), ";")
 		}
 	})
 
