@@ -17,7 +17,7 @@ func (m messageGenerator) Generate(f *codegen.File, params map[string]string) {
 		commentGenerator{descriptor: field}.generateLeading(f, 1)
 		fieldType := typeFromField(m.pkg, field)
 		isRepeated := field.IsList() || field.IsMap()
-		if !isRepeated && (field.ContainingOneof() == nil || field.HasOptionalKeyword()) {
+		if !isRepeated && (field.ContainingOneof() != nil || field.HasOptionalKeyword()) {
 			f.P(t(1), field.Name(), "?: ", fieldType.Reference(), ";")
 		} else {
 			f.P(t(1), field.Name(), ": ", fieldType.Reference(), ";")
