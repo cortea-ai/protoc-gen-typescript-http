@@ -13,39 +13,39 @@ export type Enum =
 // Message
 export type Message = {
   // double
-  double?: number;
+  double: number;
   // float
-  float?: number;
+  float: number;
   // int32
-  int32?: number;
+  int32: number;
   // int64
-  int64?: number;
+  int64: number;
   // uint32
-  uint32?: number;
+  uint32: number;
   // uint64
-  uint64?: number;
+  uint64: number;
   // sint32
-  sint32?: number;
+  sint32: number;
   // sint64
-  sint64?: number;
+  sint64: number;
   // fixed32
-  fixed32?: number;
+  fixed32: number;
   // fixed64
-  fixed64?: number;
+  fixed64: number;
   // sfixed32
-  sfixed32?: number;
+  sfixed32: number;
   // sfixed64
-  sfixed64?: number;
+  sfixed64: number;
   // bool
-  bool?: boolean;
+  bool: boolean;
   // string
-  string?: string;
+  string: string;
   // bytes
-  bytes?: string;
+  bytes: string;
   // enum
-  enum?: Enum;
+  enum: Enum;
   // message
-  message?: Message;
+  message: Message;
   // optional double
   optional_double?: number;
   // optional float
@@ -81,119 +81,119 @@ export type Message = {
   // optional message
   optional_message?: Message;
   // repeated_double
-  repeated_double: number[];
+  repeated_double?: number[]= [];
   // repeated_float
-  repeated_float: number[];
+  repeated_float?: number[]= [];
   // repeated_int32
-  repeated_int32: number[];
+  repeated_int32?: number[]= [];
   // repeated_int64
-  repeated_int64: number[];
+  repeated_int64?: number[]= [];
   // repeated_uint32
-  repeated_uint32: number[];
+  repeated_uint32?: number[]= [];
   // repeated_uint64
-  repeated_uint64: number[];
+  repeated_uint64?: number[]= [];
   // repeated_sint32
-  repeated_sint32: number[];
+  repeated_sint32?: number[]= [];
   // repeated_sint64
-  repeated_sint64: number[];
+  repeated_sint64?: number[]= [];
   // repeated_fixed32
-  repeated_fixed32: number[];
+  repeated_fixed32?: number[]= [];
   // repeated_fixed64
-  repeated_fixed64: number[];
+  repeated_fixed64?: number[]= [];
   // repeated_sfixed32
-  repeated_sfixed32: number[];
+  repeated_sfixed32?: number[]= [];
   // repeated_sfixed64
-  repeated_sfixed64: number[];
+  repeated_sfixed64?: number[]= [];
   // repeated_bool
-  repeated_bool: boolean[];
+  repeated_bool?: boolean[]= [];
   // repeated_string
-  repeated_string: string[];
+  repeated_string?: string[]= [];
   // repeated_bytes
-  repeated_bytes: string[];
+  repeated_bytes?: string[]= [];
   // repeated_enum
-  repeated_enum: Enum[];
+  repeated_enum?: Enum[]= [];
   // repeated_message
-  repeated_message: Message[];
+  repeated_message?: Message[]= [];
   // map_string_string
-  map_string_string: { [key: string]: string };
+  map_string_string?: { [key: string]: string }= {};
   // map_string_message
-  map_string_message: { [key: string]: Message };
+  map_string_message?: { [key: string]: Message }= {};
   // oneof_string
-  oneof_string: string;
+  oneof_string?: string;
   // oneof_enum
-  oneof_enum: Enum;
+  oneof_enum?: Enum;
   // oneof_message1
-  oneof_message1: Message;
+  oneof_message1?: Message;
   // oneof_message2
-  oneof_message2: Message;
+  oneof_message2?: Message;
   // any
-  any?: wellKnownAny;
+  any: wellKnownAny;
   // repeated_any
-  repeated_any: wellKnownAny[];
+  repeated_any?: wellKnownAny[]= [];
   // duration
-  duration?: wellKnownDuration;
+  duration: wellKnownDuration;
   // repeated_duration
-  repeated_duration: wellKnownDuration[];
+  repeated_duration?: wellKnownDuration[]= [];
   // empty
-  empty?: wellKnownEmpty;
+  empty: wellKnownEmpty;
   // repeated_empty
-  repeated_empty: wellKnownEmpty[];
+  repeated_empty?: wellKnownEmpty[]= [];
   // field_mask
-  field_mask?: wellKnownFieldMask;
+  field_mask: wellKnownFieldMask;
   // repeated_field_mask
-  repeated_field_mask: wellKnownFieldMask[];
+  repeated_field_mask?: wellKnownFieldMask[]= [];
   // struct
-  struct?: wellKnownStruct;
+  struct: wellKnownStruct;
   // repeated_struct
-  repeated_struct: wellKnownStruct[];
+  repeated_struct?: wellKnownStruct[]= [];
   // value
-  value?: wellKnownValue;
+  value: wellKnownValue;
   // repeated_value
-  repeated_value: wellKnownValue[];
+  repeated_value?: wellKnownValue[]= [];
   // null_value
-  null_value?: wellKnownNullValue;
+  null_value: wellKnownNullValue;
   // repeated_null_value
-  repeated_null_value: wellKnownNullValue[];
+  repeated_null_value?: wellKnownNullValue[]= [];
   // list_value
-  list_value?: wellKnownListValue;
+  list_value: wellKnownListValue;
   // repeated_list_value
-  repeated_list_value: wellKnownListValue[];
+  repeated_list_value?: wellKnownListValue[]= [];
   // bool_value
-  bool_value?: wellKnownBoolValue;
+  bool_value: wellKnownBoolValue;
   // repeated_bool_value
-  repeated_bool_value: wellKnownBoolValue[];
+  repeated_bool_value?: wellKnownBoolValue[]= [];
   // bytes_value
-  bytes_value?: wellKnownBytesValue;
+  bytes_value: wellKnownBytesValue;
   // repeated_bytes_value
-  repeated_bytes_value: wellKnownBytesValue[];
+  repeated_bytes_value?: wellKnownBytesValue[]= [];
   // double_value
-  double_value?: wellKnownDoubleValue;
+  double_value: wellKnownDoubleValue;
   // repeated_double_value
-  repeated_double_value: wellKnownDoubleValue[];
+  repeated_double_value?: wellKnownDoubleValue[]= [];
   // float_value
-  float_value?: wellKnownFloatValue;
+  float_value: wellKnownFloatValue;
   // repeated_float_value
-  repeated_float_value: wellKnownFloatValue[];
+  repeated_float_value?: wellKnownFloatValue[]= [];
   // int32_value
-  int32_value?: wellKnownInt32Value;
+  int32_value: wellKnownInt32Value;
   // repeated_int32_value
-  repeated_int32_value: wellKnownInt32Value[];
+  repeated_int32_value?: wellKnownInt32Value[]= [];
   // int64_value
-  int64_value?: wellKnownInt64Value;
+  int64_value: wellKnownInt64Value;
   // repeated_int64_value
-  repeated_int64_value: wellKnownInt64Value[];
+  repeated_int64_value?: wellKnownInt64Value[]= [];
   // uint32_value
-  uint32_value?: wellKnownUInt32Value;
+  uint32_value: wellKnownUInt32Value;
   // repeated_uint32_value
-  repeated_uint32_value: wellKnownUInt32Value[];
+  repeated_uint32_value?: wellKnownUInt32Value[]= [];
   // uint64_value
-  uint64_value?: wellKnownUInt64Value;
+  uint64_value: wellKnownUInt64Value;
   // repeated_uint64_value
-  repeated_uint64_value: wellKnownUInt64Value[];
+  repeated_uint64_value?: wellKnownUInt64Value[]= [];
   // string_value
-  string_value?: wellKnownUInt64Value;
+  string_value: wellKnownUInt64Value;
   // repeated_string_value
-  repeated_string_value: wellKnownStringValue[];
+  repeated_string_value?: wellKnownStringValue[]= [];
 };
 
 // If the Any contains a value that has a special JSON mapping,
@@ -273,7 +273,7 @@ type wellKnownStringValue = string | null;
 // NestedMessage
 export type Message_NestedMessage = {
   // nested_message.string
-  string?: string;
+  string: string;
 };
 
 // NestedEnum
@@ -281,13 +281,13 @@ export type Message_NestedEnum =
   // NESTEDENUM_UNSPECIFIED
   "NESTEDENUM_UNSPECIFIED";
 export type Request = {
-  string?: string;
-  repeated_string: string[];
-  nested?: Request_Nested;
+  string: string;
+  repeated_string?: string[]= [];
+  nested: Request_Nested;
 };
 
 export type Request_Nested = {
-  string?: string;
+  string: string;
 };
 
 export interface SyntaxService<TReqExtra> {

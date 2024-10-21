@@ -16,8 +16,11 @@ func (m messageGenerator) Generate(f *codegen.File, params map[string]string) {
 	rangeFields(m.message, func(field protoreflect.FieldDescriptor) {
 		commentGenerator{descriptor: field}.generateLeading(f, 1)
 		fieldType := typeFromField(m.pkg, field)
-		isRepeated := field.IsList() || field.IsMap()
-		if !isRepeated && (field.ContainingOneof() != nil || field.HasOptionalKeyword()) {
+		if field.IsList() {
+			f.P(t(1), field.Name(), "?: ", fieldType.Reference(), " = [];")
+		} else if field.IsMap() {
+			f.P(t(1), field.Name(), "?: ", fieldType.Reference(), " = {};")
+		} else if field.ContainingOneof() != nil || field.HasOptionalKeyword() {
 			f.P(t(1), field.Name(), "?: ", fieldType.Reference(), ";")
 		} else {
 			f.P(t(1), field.Name(), ": ", fieldType.Reference(), ";")

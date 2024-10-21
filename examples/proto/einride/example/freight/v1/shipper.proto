@@ -25,5 +25,5 @@ message Shipper {
   // The deletion timestamp of the shipper.
   google.protobuf.Timestamp delete_time = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
   // The display name of the shipper.
-  string display_name = 5 [(google.api.field_behavior) = REQUIRED];
+  optional string display_name = 5 [(google.api.field_behavior) = REQUIRED];
 }
