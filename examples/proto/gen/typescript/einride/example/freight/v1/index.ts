@@ -48,9 +48,9 @@ export type Shipment = {
   // Behaviors: REQUIRED
   delivery_latest_time: wellKnownTimestamp;
   // The line items of the shipment.
-  line_items?: LineItem[]= [];
+  line_items?: LineItem[];
   // Annotations of the shipment.
-  annotations?: { [key: string]: string }= {};
+  annotations?: { [key: string]: string };
 };
 
 // Encoded using RFC 3339, where generated output will always be Z-normalized
@@ -155,7 +155,7 @@ export type ListShippersRequest = {
 // Response message for FreightService.ListShippers.
 export type ListShippersResponse = {
   // The list of shippers.
-  shippers?: Shipper[]= [];
+  shippers?: Shipper[];
   // A token to retrieve next page of results.  Pass this value in the
   // [ListShippersRequest.page_token][einride.example.freight.v1.ListShippersRequest.page_token]
   // field in the subsequent call to `ListShippers` method to retrieve the next
@@ -249,7 +249,7 @@ export type ListSitesRequest = {
 // Response message for FreightService.ListSites.
 export type ListSitesResponse = {
   // The list of sites.
-  sites?: Site[]= [];
+  sites?: Site[];
   // A token to retrieve next page of results.  Pass this value in the
   // [ListSitesRequest.page_token][einride.example.freight.v1.ListSitesRequest.page_token]
   // field in the subsequent call to `ListSites` method to retrieve the next
@@ -320,7 +320,7 @@ export type ListShipmentsRequest = {
 // Response message for FreightService.ListShipments.
 export type ListShipmentsResponse = {
   // The list of shipments.
-  shipments?: Shipment[]= [];
+  shipments?: Shipment[];
   // A token to retrieve next page of results.  Pass this value in the
   // [ListShipmentsRequest.page_token][einride.example.freight.v1.ListShipmentsRequest.page_token]
   // field in the subsequent call to `ListShipments` method to retrieve the next

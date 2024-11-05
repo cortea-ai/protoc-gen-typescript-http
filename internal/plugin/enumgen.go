@@ -14,18 +14,13 @@ type enumGenerator struct {
 
 func (e enumGenerator) Generate(f *codegen.File) {
 	commentGenerator{descriptor: e.enum}.generateLeading(f, 0)
-	f.P("export type ", scopedDescriptorTypeName(e.pkg, e.enum), " =")
-	if e.enum.Values().Len() == 1 {
-		commentGenerator{descriptor: e.enum.Values().Get(0)}.generateLeading(f, 1)
-		f.P(t(1), strconv.Quote(string(e.enum.Values().Get(0).Name())), ";")
-		return
-	}
+	name := scopedDescriptorTypeName(e.pkg, e.enum)
+	f.P("export const ", name, " = {")
 	rangeEnumValues(e.enum, func(value protoreflect.EnumValueDescriptor, last bool) {
 		commentGenerator{descriptor: value}.generateLeading(f, 1)
-		if last {
-			f.P(t(1), "| ", strconv.Quote(string(value.Name())), ";")
-		} else {
-			f.P(t(1), "| ", strconv.Quote(string(value.Name())))
-		}
+		f.P(t(1), string(value.Name()), ": ", strconv.Quote(string(value.Name())), ",")
 	})
+	f.P("} as const;")
+	f.P("export type ", name, " = typeof ", name, "[keyof typeof ", name, "];")
+	f.P()
 }
