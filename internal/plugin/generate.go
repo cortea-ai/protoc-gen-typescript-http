@@ -37,6 +37,11 @@ func Generate(request *pluginpb.CodeGeneratorRequest) (*pluginpb.CodeGeneratorRe
 
 	var res pluginpb.CodeGeneratorResponse
 	for pkg, files := range packaged {
+		if includePath, ok := params["include_path"]; ok {
+			if !strings.HasPrefix(string(pkg), includePath) {
+				continue
+			}
+		}
 		var index codegen.File
 		indexPathElems := append(strings.Split(string(pkg), "."), "index.ts")
 		if err := (packageGenerator{pkg: pkg, files: files}).Generate(&index, params); err != nil {
